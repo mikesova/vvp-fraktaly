@@ -76,7 +76,7 @@ def plot_fractal() -> None:
         cmap = radio_cmap.value_selected
         fractal_type = radio_type.value_selected
 
-        if fractal_type == "mandelbrotova":
+        if fractal_type.lower() == "mandelbrotova":
             data = mandelbrot_set(x_min, x_max, y_min, y_max, width, height, max_iter)
             title = "Mandelbrotova množina"
         else:
@@ -95,6 +95,7 @@ def plot_fractal() -> None:
     def on_update(event=None) -> None:
         if update_timer[0] is not None:
             update_timer[0].cancel()
+            
         update_timer[0] = threading.Timer(0.1, draw_fractal)
         update_timer[0].start()
 
